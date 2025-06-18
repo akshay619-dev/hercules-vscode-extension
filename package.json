@@ -1,0 +1,167 @@
+{
+  "name": "hercules-mcp-extension",
+  "displayName": "Hercules MCP Extension",
+  "description": "VS Code extension for Hercules test automation via MCP",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Testing",
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:hercules.createTestCase",
+    "onCommand:hercules.runCurrentFile",
+    "onCommand:hercules.runSelectedFile",
+    "onCommand:hercules.listTestCases",
+    "onCommand:hercules.viewResults",
+    "onCommand:hercules.viewExecutionResults",
+    "onLanguage:gherkin"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "hercules.createTestCase",
+        "title": "Hercules: Create Test Case File",
+        "category": "Hercules"
+      },
+      {
+        "command": "hercules.runCurrentFile",
+        "title": "Hercules: Run Current Feature File",
+        "category": "Hercules"
+      },
+      {
+        "command": "hercules.runSelectedFile",
+        "title": "Hercules: Run Selected Feature File",
+        "category": "Hercules"
+      },
+      {
+        "command": "hercules.listTestCases",
+        "title": "Hercules: List Test Cases",
+        "category": "Hercules"
+      },
+      {
+        "command": "hercules.viewResults",
+        "title": "Hercules: View Test Results",
+        "category": "Hercules"
+      },
+      {
+        "command": "hercules.viewExecutionResults",
+        "title": "Hercules: View Execution Results",
+        "category": "Hercules"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "hercules.createTestCase",
+          "when": "true"
+        },
+        {
+          "command": "hercules.runCurrentFile",
+          "when": "resourceExtname == .feature"
+        },
+        {
+          "command": "hercules.runSelectedFile",
+          "when": "true"
+        },
+        {
+          "command": "hercules.listTestCases",
+          "when": "true"
+        },
+        {
+          "command": "hercules.viewResults",
+          "when": "true"
+        },
+        {
+          "command": "hercules.viewExecutionResults",
+          "when": "true"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "hercules.runCurrentFile",
+          "when": "resourceExtname == .feature",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "hercules.viewResults",
+          "when": "view == herculesTestCases",
+          "group": "inline"
+        },
+        {
+          "command": "hercules.viewExecutionResults",
+          "when": "view == herculesTestCases",
+          "group": "inline"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "hercules",
+          "title": "Hercules",
+          "icon": "resources/hercules-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "hercules": [
+        {
+          "id": "herculesTestCases",
+          "name": "Test Cases"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Hercules",
+      "properties": {
+        "hercules.serverUrl": {
+          "type": "string",
+          "default": "http://localhost:3000",
+          "description": "URL of the Hercules MCP server"
+        },
+        "hercules.debug": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable debug logging for Hercules extension"
+        },
+        "hercules.autoConnect": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically connect to Hercules server on startup"
+        },
+        "hercules.timeout": {
+          "type": "number",
+          "default": 30000,
+          "description": "Timeout for server requests in milliseconds"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "ws": "^8.14.2",
+    "node-fetch": "^3.3.2",
+    "dotenv": "^16.5.0"
+  }
+} 
