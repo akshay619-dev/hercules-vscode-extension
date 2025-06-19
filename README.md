@@ -52,12 +52,42 @@ A Model Context Protocol (MCP) server and VS Code extension that provides seamle
    npm run compile
    ```
 
-4. Open the extension in VS Code:
-   ```bash
-   code .
+### Packaging & Publishing the Extension
+
+#### 1. Package the Extension
+
+First, install the VSCE tool if you haven't already:
+```sh
+npm install -g @vscode/vsce
+```
+
+Then, from the extension root directory, run:
+```sh
+vsce package
+```
+This will generate a `.vsix` file (e.g., `hercules-vscode-extension-0.0.1.vsix`).
+
+#### 2. Install the Extension Locally (Optional)
+To test the extension before publishing, install the `.vsix` file:
+```sh
+code --install-extension hercules-vscode-extension-0.0.1.vsix
+```
+
+#### 3. Publish to the VS Code Marketplace
+1. [Create a publisher](https://aka.ms/vscode-create-publisher) if you haven't already.
+2. Login to VSCE:
+   ```sh
+   vsce login <publisher-name>
+   ```
+   (You will need a Personal Access Token from Azure DevOps with Marketplace publish scope.)
+3. Publish your extension:
+   ```sh
+   vsce publish
    ```
 
-5. Press `F5` to run the extension in a new VS Code window
+After publishing, your extension will be available in the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/vscode) for anyone to install directly from VS Code.
+
+For more details, see the [official publishing guide](https://code.visualstudio.com/api/working-with-extensions/publishing-extension).
 
 ## 🎯 Usage
 
