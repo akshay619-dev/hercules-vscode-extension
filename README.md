@@ -24,6 +24,8 @@ A Model Context Protocol (MCP) server and VS Code extension that provides seamle
 
 
 
+
+
 ## 🛠️ Installation & Setup
 
 ### Prerequisites
@@ -59,6 +61,15 @@ A Model Context Protocol (MCP) server and VS Code extension that provides seamle
 
 ## 🎯 Usage
 
+### Commands to use
+
+1. Hercules: Run Current Feature File
+2. Hercules: Run Selected Feature File
+3. Hercules: List Test Cases
+4. Hercules: View Test Results
+5. Hercules: View Execution Results
+
+
 ### Creating a Test Case
 
 1. Open VS Code with the Hercules extension
@@ -93,10 +104,10 @@ Scenario: Successful Login
 
 ### VS Code Extension Configuration
 
-The extension automatically connects to the MCP server. The server path is configured in `mcp-vs-extension/src/extension.ts`:
+The extension automatically connects to the MCP server. The server path is configured in `hercules-vscode-extension/src/extension.ts`:
 
 ```typescript
-const serverPath = path.join(__dirname, '..', '..', 'mcp-server', 'dist', 'index.js');
+const serverPath = path.join(__dirname, '..', '..', 'hercules-mcp-server', 'dist', 'index.js');
 ```
 
 ## 🧪 Testing
